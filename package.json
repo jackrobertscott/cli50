@@ -1,13 +1,12 @@
 {
   "name": "cli50",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Command line toolkit for building typescript packages.",
   "author": "Jack Scott",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "create-node-package": "dist/bin/create-node-package.js",
-    "create-react-package": "dist/bin/create-react-package.js"
+    "create-package": "dist/bin/create-package.js"
   },
   "scripts": {
     "build": "tsc",

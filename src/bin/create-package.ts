@@ -14,8 +14,14 @@ import { toKebabCase } from '../utils/toKebabCase.js' // .js required
 async function main() {
   const answers: any = await inquirer.prompt([
     {
+      type: 'list',
+      name: 'packageType',
+      message: 'What type of package do you want to create?',
+      choices: ['Node', 'React'],
+    },
+    {
       type: 'input',
-      name: 'appName',
+      name: 'packageName',
       message: 'What is the name of your library?',
     },
     {
@@ -35,15 +41,16 @@ async function main() {
       default: './',
     },
   ])
+  const isReact = answers.packageType === 'React'
 
   // Create folder
-  answers.appName = toKebabCase(answers.appName)
-  const folderPath = path.join(answers.folderPath, answers.appName)
+  answers.packageName = toKebabCase(answers.packageName)
+  const folderPath = path.join(answers.folderPath, answers.packageName)
   fs.mkdirSync(folderPath, { recursive: true })
 
   // Create core files
   createPackage(folderPath, answers)
-  createTSConfig(folderPath)
+  createTSConfig(folderPath, { react: isReact })
   createGitignore(folderPath)
   createReadme(folderPath, answers)
   createPrettierrc(folderPath)
@@ -54,16 +61,21 @@ async function main() {
   fs.writeFileSync(path.join(srcFolderPath, 'index.ts'), '// todo\n')
 
   // Create test file
-  const testsFolderPath = path.join(folderPath, 'tests')
-  fs.mkdirSync(testsFolderPath, { recursive: true })
-  fs.writeFileSync(path.join(testsFolderPath, 'index.test.ts'), '// todo\n')
+  fs.writeFileSync(path.join(srcFolderPath, 'index.test.ts'), '// todo\n')
 
   // Install dependencies
   const devDeps = ['typescript', 'jest', '@types/jest', '@types/node']
+  if (isReact) devDeps.push('@types/react')
   execSync('npm i --save-dev ' + devDeps.join(' '), {
     cwd: folderPath,
     stdio: 'inherit',
   })
+  if (isReact) {
+    execSync('npm i --save-peer react', {
+      cwd: folderPath,
+      stdio: 'inherit',
+    })
+  }
 }
 
 main().catch((error) => {

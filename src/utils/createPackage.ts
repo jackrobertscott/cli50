@@ -4,13 +4,13 @@ import * as path from 'path'
 export function createPackage(
   folderPath: string,
   options: {
-    appName: string
+    packageName: string
     description: string
     author: string
   }
 ) {
   const data = {
-    name: options.appName,
+    name: options.packageName,
     description: options.description,
     author: options.author,
     version: '0.1.0',

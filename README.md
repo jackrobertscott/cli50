@@ -29,25 +29,15 @@ yarn global add cli50
 
 Once the package is installed globally, you can use the following scripts to create new packages.
 
-### Create a Node.js Package
+### Create a Package
 
-To create a new Node.js package, run the following command:
-
-```bash
-create-node-package
-```
-
-This will generate a new directory with the specified package name, containing all the files necessary for a Node.js TypeScript package.
-
-### Create a React Package
-
-To create a new React package, run the following command:
+To create a new package, run the following command:
 
 ```bash
-create-react-package
+create-package
 ```
 
-This will generate a new directory with the specified package name, containing all the files necessary for a React TypeScript package.
+This will generate a new directory containing all the files necessary for a package.
 
 ## Directory Structure
 
