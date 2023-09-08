@@ -39,9 +39,9 @@ create-node-package
 
 This will generate a new directory with the specified package name, containing all the files necessary for a Node.js TypeScript package.
 
-### Create a Browser Package
+### Create a React Package
 
-To create a new Browser package, run the following command:
+To create a new React package, run the following command:
 
 ```bash
 create-react-package
