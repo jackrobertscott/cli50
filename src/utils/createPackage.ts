@@ -7,6 +7,7 @@ export function createPackage(
     packageName: string
     description: string
     author: string
+    react: boolean
   }
 ) {
   const data = {
@@ -15,7 +16,6 @@ export function createPackage(
     author: options.author,
     version: '0.1.0',
     license: 'MIT',
-    type: 'module',
     main: 'dist/index.js',
     types: 'dist/index.d.ts',
     scripts: {
@@ -24,6 +24,7 @@ export function createPackage(
       prepublishOnly: 'npm run build',
     },
   }
+  if (options.react) Object.assign(data, { type: 'module' })
   const content = JSON.stringify(data, null, 2)
   fs.writeFileSync(path.join(folderPath, 'package.json'), content)
 }

@@ -8,9 +8,8 @@ export function createTSConfig(
   const data = {
     compilerOptions: {
       target: 'ES6',
-      module: options.react ? 'CommonJS' : 'ESNext',
+      module: 'CommonJS',
       outDir: 'dist',
-      rootDir: 'src',
       strict: true,
       declaration: true,
       skipLibCheck: true,

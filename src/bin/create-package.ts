@@ -49,7 +49,7 @@ async function main() {
   fs.mkdirSync(folderPath, { recursive: true })
 
   // Create core files
-  createPackage(folderPath, answers)
+  createPackage(folderPath, { ...answers, react: isReact })
   createTSConfig(folderPath, { react: isReact })
   createGitignore(folderPath)
   createReadme(folderPath, answers)
