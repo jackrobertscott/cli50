@@ -54,10 +54,13 @@ async function main() {
   fs.writeFileSync(path.join(srcFolderPath, 'index.ts'), '// todo\n')
 
   // Create test file
-  fs.writeFileSync(path.join(srcFolderPath, 'index.test.ts'), '// todo\n')
+  const testsFolderPath = path.join(folderPath, 'tests')
+  fs.mkdirSync(testsFolderPath, { recursive: true })
+  fs.writeFileSync(path.join(testsFolderPath, 'index.test.ts'), '// todo\n')
 
   // Install dependencies
-  execSync('npm i --save-dev @types/node typescript jest', {
+  const devDeps = ['typescript', 'jest', '@types/jest', '@types/node']
+  execSync('npm i --save-dev ' + devDeps.join(' '), {
     cwd: folderPath,
     stdio: 'inherit',
   })

@@ -57,7 +57,14 @@ async function main() {
   fs.writeFileSync(path.join(srcFolderPath, 'index.test.ts'), '// todo\n')
 
   // Install dependencies
-  execSync('npm i --save-dev @types/react typescript jest', {
+  const devDeps = [
+    'typescript',
+    'jest',
+    '@types/jest',
+    '@types/node',
+    '@types/react',
+  ]
+  execSync('npm i --save-dev ' + devDeps.join(' '), {
     cwd: folderPath,
     stdio: 'inherit',
   })

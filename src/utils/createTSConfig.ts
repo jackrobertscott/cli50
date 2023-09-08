@@ -18,7 +18,7 @@ export function createTSConfig(
       forceConsistentCasingInFileNames: true,
     },
     include: ['src/**/*.ts'],
-    exclude: ['node_modules', 'tests'],
+    exclude: ['node_modules', 'src/**/*.test.ts'],
   }
   if (options.react) {
     Object.assign(data.compilerOptions, { jsx: 'react' })
