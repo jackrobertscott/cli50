@@ -13,7 +13,7 @@ export function createPackage(
     name: options.appName,
     description: options.description,
     author: options.author,
-    version: '0.0.0',
+    version: '0.1.0',
     license: 'MIT',
     type: 'module',
     main: 'dist/index.js',
