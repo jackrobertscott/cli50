@@ -4,7 +4,6 @@
   "description": "Command line toolkit for building typescript packages.",
   "author": "Jack Scott",
   "license": "MIT",
-  "type": "module",
   "bin": {
     "create-package": "dist/bin/create-package.js"
   },
