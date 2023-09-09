@@ -24,7 +24,10 @@ export function createPackage(
       prepublishOnly: 'npm run build',
     },
   }
-  if (options.react) Object.assign(data, { type: 'module' })
+  if (options.react) {
+    Object.assign(data, { type: 'module' })
+    Object.assign(data.scripts, { dev: 'vite' })
+  }
   const content = JSON.stringify(data, null, 2)
   fs.writeFileSync(path.join(folderPath, 'package.json'), content)
 }
