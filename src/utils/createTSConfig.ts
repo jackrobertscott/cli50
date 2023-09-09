@@ -13,6 +13,7 @@ export function createTSConfig(
       strict: true,
       declaration: true,
       skipLibCheck: true,
+      noImplicitAny: true,
       esModuleInterop: true,
       forceConsistentCasingInFileNames: true,
     },
