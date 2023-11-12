@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
+import { input, select } from "@inquirer/prompts"
 import { execSync } from "child_process"
 import * as fs from "fs"
-import inquirer from "inquirer"
 import * as path from "path"
 import { createDemo } from "../utils/createDemo.js"
 import { createGitignore } from "../utils/createGitignore.js"
@@ -15,48 +15,36 @@ import { createViteConfig } from "../utils/createViteConfig.js"
 import { toKebabCase } from "../utils/toKebabCase.js" // .js required
 
 async function main() {
-  const answers: any = await inquirer.prompt([
-    {
-      type: "list",
-      name: "packageType",
-      message: "What type of package do you want to create?",
-      choices: ["Node", "React"],
-    },
-    {
-      type: "input",
-      name: "packageName",
-      message: "What is the name of your library?",
-    },
-    {
-      type: "input",
-      name: "description",
-      message: "Provide a description for your library:",
-    },
-    {
-      type: "input",
-      name: "author",
-      message: "Author name:",
-    },
-    {
-      type: "input",
-      name: "folderPath",
-      message: "Where would you like to generate the code?",
-      default: "./",
-    },
-  ])
-  const isReact = answers.packageType === "React"
+  const packageType = await select({
+    message: "What type of package do you want to create?",
+    choices: [{ value: "node" }, { value: "react" }],
+  })
+  let packageName = await input({
+    message: "What is the name of your library?",
+  })
+  packageName = toKebabCase(packageName)
+  const description = await input({
+    message: "Provide a description for your library:",
+  })
+  const author = await input({
+    message: "Author name:",
+  })
+  const packageDir = await input({
+    message: "Where would you like to generate the code?",
+    default: "./",
+  })
+  const isReact = packageType === "react"
 
   // Create folder
-  answers.packageName = toKebabCase(answers.packageName)
-  const folderPath = path.join(answers.folderPath, answers.packageName)
+  const folderPath = path.join(packageDir, packageName)
   fs.mkdirSync(folderPath, { recursive: true })
 
   // Create core files
-  createPackage(folderPath, { ...answers, react: isReact })
-  createTSConfig(folderPath, { react: isReact })
   createGitignore(folderPath)
-  createReadme(folderPath, answers)
   createPrettierrc(folderPath)
+  createTSConfig(folderPath, { react: isReact })
+  createReadme(folderPath, { packageName, description })
+  createPackage(folderPath, { isReact, packageName, description, author })
 
   // Create src folder and index.ts
   const srcFolderPath = path.join(folderPath, "src")
@@ -66,8 +54,8 @@ async function main() {
 
   // Create files for demo
   if (isReact) {
-    createDemo(folderPath, answers)
-    createHTML(folderPath, answers)
+    createDemo(folderPath, { packageName })
+    createHTML(folderPath, { packageName })
     createViteConfig(folderPath)
   }
 

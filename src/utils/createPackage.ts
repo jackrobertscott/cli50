@@ -7,7 +7,7 @@ export function createPackage(
     packageName: string
     description: string
     author: string
-    react: boolean
+    isReact: boolean
   }
 ) {
   const data = {
@@ -25,7 +25,7 @@ export function createPackage(
       prepublishOnly: "npm run build",
     },
   }
-  if (options.react) {
+  if (options.isReact) {
     Object.assign(data, { type: "module" })
     Object.assign(data.scripts, { dev: "vite" })
   }

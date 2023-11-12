@@ -34,7 +34,7 @@ Once the package is installed globally, you can use the following scripts to cre
 To create a new package, run the following command:
 
 ```bash
-create-package
+pack
 ```
 
 This will generate a new directory containing all the files necessary for a package.
