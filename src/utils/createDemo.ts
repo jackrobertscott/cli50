@@ -1,5 +1,5 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import * as fs from "fs"
+import * as path from "path"
 
 const createContent = (title: string) => `
 import { createElement } from 'react'
@@ -14,10 +14,10 @@ export function createDemo(
   folderPath: string,
   options: { packageName: string }
 ) {
-  const demoFolderPath = path.join(folderPath, 'demo')
+  const demoFolderPath = path.join(folderPath, "demo")
   fs.mkdirSync(demoFolderPath, { recursive: true })
   fs.writeFileSync(
-    path.join(demoFolderPath, 'main.ts'),
+    path.join(demoFolderPath, "main.ts"),
     createContent(options.packageName).trim()
   )
 }

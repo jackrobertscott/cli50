@@ -1,5 +1,5 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import * as fs from "fs"
+import * as path from "path"
 
 export function createReadme(
   folderPath: string,
@@ -8,6 +8,12 @@ export function createReadme(
     description: string
   }
 ) {
-  const content = ['# ' + options.packageName, options.description].join('\n\n')
-  fs.writeFileSync(path.join(folderPath, 'README.md'), content)
+  const content = [
+    "# " + options.packageName,
+    "\n",
+    "\n",
+    options.description,
+    "\n",
+  ].join("")
+  fs.writeFileSync(path.join(folderPath, "readme.md"), content)
 }

@@ -1,5 +1,5 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import * as fs from "fs"
+import * as path from "path"
 
 export function createTSConfig(
   folderPath: string,
@@ -7,9 +7,9 @@ export function createTSConfig(
 ) {
   const data = {
     compilerOptions: {
-      target: 'ES6',
-      module: 'CommonJS',
-      outDir: 'dist',
+      target: "ES6",
+      module: "CommonJS",
+      outDir: "dist",
       strict: true,
       declaration: true,
       skipLibCheck: true,
@@ -17,13 +17,13 @@ export function createTSConfig(
       esModuleInterop: true,
       forceConsistentCasingInFileNames: true,
     },
-    include: ['src/**/*.ts'],
-    exclude: ['node_modules', 'src/**/*.test.ts'],
+    include: ["src/**/*.ts"],
+    exclude: ["node_modules", "src/**/*.test.ts"],
   }
   if (options.react) {
-    Object.assign(data.compilerOptions, { jsx: 'react' })
-    data.include.push('src/**/*.tsx')
+    Object.assign(data.compilerOptions, { jsx: "react" })
+    data.include.push("src/**/*.tsx")
   }
   const content = JSON.stringify(data, null, 2)
-  fs.writeFileSync(path.join(folderPath, 'tsconfig.json'), content)
+  fs.writeFileSync(path.join(folderPath, "tsconfig.json"), content)
 }

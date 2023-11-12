@@ -1,5 +1,5 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import * as fs from "fs"
+import * as path from "path"
 
 const content = `
 import react from '@vitejs/plugin-react'
@@ -14,5 +14,5 @@ export default defineConfig({
 `
 
 export function createViteConfig(folderPath: string) {
-  fs.writeFileSync(path.join(folderPath, 'vite.config.ts'), content.trim())
+  fs.writeFileSync(path.join(folderPath, "vite.config.ts"), content.trim())
 }

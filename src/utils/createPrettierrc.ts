@@ -1,5 +1,5 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import * as fs from "fs"
+import * as path from "path"
 
 export function createPrettierrc(folderPath: string) {
   const data = {
@@ -9,5 +9,5 @@ export function createPrettierrc(folderPath: string) {
     tabWidth: 2,
   }
   const content = JSON.stringify(data, null, 2)
-  fs.writeFileSync(path.join(folderPath, '.prettierrc'), content)
+  fs.writeFileSync(path.join(folderPath, ".prettierrc"), content)
 }

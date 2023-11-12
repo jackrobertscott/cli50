@@ -1,5 +1,5 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import * as fs from "fs"
+import * as path from "path"
 
 const createContent = (title: string) => `
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ export function createHTML(
   options: { packageName: string }
 ) {
   fs.writeFileSync(
-    path.join(folderPath, 'vite.config.ts'),
+    path.join(folderPath, "vite.config.ts"),
     createContent(options.packageName).trim()
   )
 }
