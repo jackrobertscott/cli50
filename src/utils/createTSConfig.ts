@@ -7,21 +7,22 @@ export function createTSConfig(
 ) {
   const data = {
     compilerOptions: {
-      target: "ES6",
-      module: "CommonJS",
-      outDir: "dist",
       strict: true,
+      sourceMap: true,
       declaration: true,
       skipLibCheck: true,
-      noImplicitAny: true,
       esModuleInterop: true,
       forceConsistentCasingInFileNames: true,
+      moduleResolution: "Node",
+      module: "CommonJS",
+      target: "ES2017",
+      outDir: "dist",
     },
     include: ["src/**/*.ts"],
     exclude: ["node_modules", "src/**/*.test.ts"],
   }
   if (options.react) {
-    Object.assign(data.compilerOptions, { jsx: "react" })
+    Object.assign(data.compilerOptions, { jsx: "react-jsx" })
     data.include.push("src/**/*.tsx")
   }
   const content = JSON.stringify(data, null, 2)
